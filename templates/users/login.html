@@ -1,0 +1,27 @@
+{% extends "users/base.html" %}
+{% block head_content %}
+<title>Fotogram Login</title>
+{% endblock %}
+{% block container %}
+
+    {% if form.errors %}
+        <p class="alert alert-danger">
+                Your username or password didn't match. Please try again.
+        </p>
+    {% endif %}
+
+    <form method="post" action="{% url "users:login" %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+        </div>
+        
+        <button class="btn btn-primary btn-block mt-4" type="submit">Log in</button>
+    </form>
+    <div>
+        <p>Don't have an account yet?</p><a href="{% url "users:signup"%}"> Sign up here!</a>
+    </div>
+{% endblock %}
